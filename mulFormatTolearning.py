@@ -106,8 +106,16 @@ exerciseText.bind("<Control-a>", select_all)
 # 绑定 Command+A（macOS）
 exerciseText.bind("<Command-a>", select_all)
 
-exerciseText.bind("<Control-z>", lambda e: exerciseText.edit_undo())
-exerciseText.bind("<Command-z>", lambda e: exerciseText.edit_undo())
+def safe_undo(event):
+    try:
+        event.widget.edit_undo()
+    except TclError:
+        pass  # 忽略“nothing to undo”的异常
+    return "break"
+
+exerciseText.bind("<Control-z>", safe_undo)
+exerciseText.bind("<Command-z>", safe_undo)  # macOS 支持
+
 
 
 
