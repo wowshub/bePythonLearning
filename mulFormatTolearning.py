@@ -39,6 +39,10 @@ def custom_showinfo(title, message, width=500, height=200):
     win.geometry(f"{width}x{height}+{x}+{y}")
     Label(win, text=message, font=default_font, pady=30).pack()
     Button(win, text="确定", font=default_font, width=10, command=win.destroy).pack(pady=20)
+def select_all(event):
+    event.widget.tag_add("sel", "1.0", "end")
+    return "break"
+
 
 # ✅ 最新：识别题干、加编号、替换小题号的函数
 def wrap_big_questions(text: str) -> str:
@@ -94,6 +98,14 @@ def format_to_learning():
 Label(FormatToLearningGui, text="输入A3/A4题目", font=default_font, height=3).pack()
 exerciseText = Text(FormatToLearningGui, font=default_font)
 exerciseText.pack(fill=BOTH, expand=True, padx=20, pady=10)
+
+
+# 绑定 Ctrl+A 快捷键（Windows/Linux）
+exerciseText.bind("<Control-a>", select_all)
+
+# 绑定 Command+A（macOS）
+exerciseText.bind("<Command-a>", select_all)
+
 saveButtom = Button(FormatToLearningGui, text="转换", command=format_to_learning, font=default_font, height=2, width=10)
 saveButtom.pack(pady=10)
 
