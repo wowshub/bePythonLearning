@@ -44,11 +44,16 @@ def custom_showinfo(title, message):
 
 
 def format_to_learning():
+    content = exerciseText.get("1.0", END).strip()
+    if not content:
+        custom_showinfo("⚠ 提示", "输入框为空，请输入内容后再转换！")
+        return
+
     with open("renwei.txt", "a", encoding="utf-8") as renweifile:
-        renweifile.write("{{ \n")
-        renweifile.write(exerciseText.get(1.0, END))
-        renweifile.write("}} \n")
-    # 弹出转换完成提示
+        renweifile.write("{{")
+        renweifile.write(content)
+        renweifile.write("}}")
+
     custom_showinfo("转换成功", "🎉 题目已成功写入 renwei.txt")
 
 
