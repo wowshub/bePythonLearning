@@ -1,0 +1,5 @@
+{{本教程为斑马鱼 Danio rerio 生成自定义参考基因组。
+打开 Ensembl 网站的基因注释部分，然后单击下载 GTF 链接。这会将您带到一个 FTP 站点，其中包含可用的 GTF 文件列表。选择名为 Danio_rerio.GRCz11.113.gtf.gz 的文件。这是该物种的GTF注释文件。Ensembl 中的所有物种都有类似的文件可供下载。
+}}{{本教程为斑马鱼 Danio rerio 生成自定义参考基因组。
+打开 Ensembl 网站的基因注释部分，然后单击下载 GTF 链接。这会将您带到一个 FTP 站点，其中包含可用的 GTF 文件列表。选择名为 Danio_rerio.GRCz11.113.gtf.gz 的文件。这是该物种的GTF注释文件。Ensembl 中的所有物种都有类似的文件可供下载。
+}}
