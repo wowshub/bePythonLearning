@@ -96,7 +96,7 @@ def format_to_learning():
 
 # UI 布局
 Label(FormatToLearningGui, text="输入A3/A4题目", font=default_font, height=3).pack()
-exerciseText = Text(FormatToLearningGui, font=default_font)
+exerciseText = Text(FormatToLearningGui, font=default_font, undo=True, maxundo=-1, autoseparators=True)
 exerciseText.pack(fill=BOTH, expand=True, padx=20, pady=10)
 
 
@@ -105,6 +105,11 @@ exerciseText.bind("<Control-a>", select_all)
 
 # 绑定 Command+A（macOS）
 exerciseText.bind("<Command-a>", select_all)
+
+exerciseText.bind("<Control-z>", lambda e: exerciseText.edit_undo())
+exerciseText.bind("<Command-z>", lambda e: exerciseText.edit_undo())
+
+
 
 saveButtom = Button(FormatToLearningGui, text="转换", command=format_to_learning, font=default_font, height=2, width=10)
 saveButtom.pack(pady=10)
