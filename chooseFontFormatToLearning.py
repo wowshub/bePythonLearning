@@ -32,15 +32,26 @@ FormatToLearningGui.title("人卫题库导入学习通小程序")
 FormatToLearningGui.geometry("2400x1600+500+500")
 
 
-def custom_showinfo(title, message):
+def custom_showinfo(title, message, width=500, height=200):
     win = Toplevel(FormatToLearningGui)
     win.title(title)
-    win.geometry("500x200")
-    win.grab_set()  # 阻止点击主窗口，模仿 modal
+    win.grab_set()  # 模态窗口（阻止主界面点击）
 
+    # 获取屏幕尺寸
+    screen_width = win.winfo_screenwidth()
+    screen_height = win.winfo_screenheight()
+
+    # 计算弹窗居中坐标
+    x = (screen_width - width) // 2
+    y = (screen_height - height) // 2
+
+    # 设置窗口大小和位置
+    win.geometry(f"{width}x{height}+{x}+{y}")
+
+    # 内容区域
     Label(win, text=message, font=default_font, pady=30).pack()
-
     Button(win, text="确定", font=default_font, width=10, command=win.destroy).pack(pady=20)
+
 
 
 def format_to_learning():
