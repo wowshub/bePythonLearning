@@ -1,6 +1,8 @@
 # -*- coding: utf-8 -*-
 from tkinter import *
-from tkinter import font
+from tkinter import font, messagebox  # 导入 messagebox
+
+
 
 # 提前创建 Tk 根窗口，供 font.families 使用
 root = Tk()
@@ -27,13 +29,17 @@ default_font = (selected_font_name, 18)
 # 创建真正的 GUI 窗口
 FormatToLearningGui = Tk()
 FormatToLearningGui.title("人卫题库导入学习通小程序")
-FormatToLearningGui.geometry("1900x600+500+500")
+FormatToLearningGui.geometry("2400x1600+500+500")
 
 def format_to_learning():
     with open("renwei.txt", "a", encoding="utf-8") as renweifile:
         renweifile.write("{{ \n")
         renweifile.write(exerciseText.get(1.0, END))
         renweifile.write("}} \n")
+    # 弹出转换完成提示
+    messagebox.showinfo("转换成功", "🎉 题目已成功写入 renwei.txt", font=default_font)
+
+
 
 Label(FormatToLearningGui, text="输入A3/A4题目", font=default_font, height=3).pack()
 exerciseText = Text(FormatToLearningGui, font=default_font)
