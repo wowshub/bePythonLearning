@@ -31,14 +31,25 @@ FormatToLearningGui = Tk()
 FormatToLearningGui.title("人卫题库导入学习通小程序")
 FormatToLearningGui.geometry("2400x1600+500+500")
 
+
+def custom_showinfo(title, message):
+    win = Toplevel(FormatToLearningGui)
+    win.title(title)
+    win.geometry("500x200")
+    win.grab_set()  # 阻止点击主窗口，模仿 modal
+
+    Label(win, text=message, font=default_font, pady=30).pack()
+
+    Button(win, text="确定", font=default_font, width=10, command=win.destroy).pack(pady=20)
+
+
 def format_to_learning():
     with open("renwei.txt", "a", encoding="utf-8") as renweifile:
         renweifile.write("{{ \n")
         renweifile.write(exerciseText.get(1.0, END))
         renweifile.write("}} \n")
     # 弹出转换完成提示
-    messagebox.showinfo("转换成功", "🎉 题目已成功写入 renwei.txt", font=default_font)
-
+    custom_showinfo("转换成功", "🎉 题目已成功写入 renwei.txt")
 
 
 Label(FormatToLearningGui, text="输入A3/A4题目", font=default_font, height=3).pack()
