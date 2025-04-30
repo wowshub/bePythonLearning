@@ -1,12 +1,16 @@
-@echo off
+﻿@echo off
 setlocal
+
+chcp 65001 >nul
+
 
 :: ========================
 :: 配置变量
 :: ========================
 
 :: 用户输入版本号
-set /p VERSION=请输入版本号（如 v1.1）：
+set /p VERSION=Please enter version (e.g. v1.1):
+echo ✅ Version entered: %VERSION%
 
 set SCRIPT=FormatToLearning.py
 set ICON=be.ico
@@ -56,7 +60,8 @@ powershell ^
   "$t='构建时间：%TIMESTAMP:~0,4%-%TIMESTAMP:~4,2%-%TIMESTAMP:~6,2% %TIMESTAMP:~9,2%:%TIMESTAMP:~11,2%';" ^
   "$f='构建文件：%OUTNAME%.exe';" ^
   "$lines=($v,$t,$f);" ^
-  "Set-Content -Path dist\\version.txt -Value $lines"
+  "Set-Content -Path dist\\version.txt -Value $lines -Encoding UTF8"
+
 
 
 
