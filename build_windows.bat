@@ -2,9 +2,9 @@
 setlocal
 
 :: 设置变量
-set SCRIPT=mulFormatTolearning.py
+set SCRIPT=FormatToLearning.py
 set ICON=be.ico
-set OUTNAME=mulFormatTolearning
+set OUTNAME=FormatToLearning
 
 :: 检查 Python 环境
 where pyinstaller >nul 2>&1

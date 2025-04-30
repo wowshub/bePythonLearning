@@ -4,9 +4,9 @@ setlocal
 :: ========================
 :: 配置变量
 :: ========================
-set SCRIPT=mulFormatTolearning.py
+set SCRIPT=FormatToLearning.py
 set ICON=be.ico
-set OUTNAME=mulFormatTolearning
+set OUTNAME=FormatToLearning
 set VERSION=v1.0
 set ZIPNAME=%OUTNAME%_%VERSION%.zip
 
