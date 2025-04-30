@@ -45,40 +45,33 @@ def select_all(event):
 
 
 # ✅ 最新：识别题干、加编号、替换小题号的函数
-def wrap_big_questions(text: str) -> str:
+def wrap_b1_questions(text: str) -> str:
     lines = text.strip().splitlines()
     output_blocks = []
     current_block = []
     block_counter = 1
-    sub_counter = 1
 
     for line in lines:
-        stripped_line = line.strip()
+        stripped = line.strip()
 
-        # 检查是否是新大题（如： (1~2题共用题干)）
-        if re.match(r"\(\d+~\d+题共用题干\)", stripped_line):
+        # 检测是否是 "(数字～数字共用备选答案)" 结构
+        if re.match(r"^\（?\d+～\d+共用备选答案\）?", stripped):
             if current_block:
+                # 加入前一个大题块
                 block_text = "\n".join(current_block).strip()
                 output_blocks.append(f"{block_counter}.{{{{\n{block_text}\n}}}}")
                 block_counter += 1
-                sub_counter = 1
                 current_block = []
-            current_block.append(stripped_line)
-        else:
-            # 将(数字)开头的小题转换为 1. 2. ...
-            if re.match(r"^\(\d+\)", stripped_line):
-                converted_line = re.sub(r"^\(\d+\)", f"{sub_counter}.", stripped_line)
-                current_block.append(converted_line)
-                sub_counter += 1
-            else:
-                current_block.append(stripped_line)
 
-    # 最后一块
+        current_block.append(stripped)
+
+    # 最后一块处理
     if current_block:
         block_text = "\n".join(current_block).strip()
         output_blocks.append(f"{block_counter}.{{{{\n{block_text}\n}}}}")
 
     return "\n\n".join(output_blocks)
+
 
 # 转换按钮功能
 def format_to_learning():
@@ -87,15 +80,15 @@ def format_to_learning():
         custom_showinfo("⚠ 提示", "输入框为空，请输入内容后再转换！")
         return
 
-    formatted = wrap_big_questions(content)
+    formatted = wrap_b1_questions(content)
 
-    with open("renweiA3A4Output.txt", "a", encoding="utf-8") as renweifile:
+    with open("renweiB1Output.txt", "a", encoding="utf-8") as renweifile:
         renweifile.write(formatted + "\n")
 
-    custom_showinfo("转换成功", "🎉 所有大题已成功写入 renweiA3A4Output.txt")
+    custom_showinfo("转换成功", "🎉 所有大题已成功写入 renweiB1Output.txt")
 
 # UI 布局
-Label(FormatToLearningGui, text="输入A3/A4题目", font=default_font, height=3).pack()
+Label(FormatToLearningGui, text="输入B1题目", font=default_font, height=3).pack()
 exerciseText = Text(FormatToLearningGui, font=default_font, undo=True, maxundo=-1, autoseparators=True)
 exerciseText.pack(fill=BOTH, expand=True, padx=20, pady=10)
 
