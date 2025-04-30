@@ -89,10 +89,10 @@ def format_to_learning():
 
     formatted = wrap_big_questions(content)
 
-    with open("mulrenweim.txt", "a", encoding="utf-8") as renweifile:
+    with open("renweiA3A4.txt", "a", encoding="utf-8") as renweifile:
         renweifile.write(formatted + "\n")
 
-    custom_showinfo("转换成功", "🎉 所有大题已成功写入 mulrenweim.txt")
+    custom_showinfo("转换成功", "🎉 所有大题已成功写入 renweiA3A4.txt")
 
 # UI 布局
 Label(FormatToLearningGui, text="输入A3/A4题目", font=default_font, height=3).pack()
