@@ -55,6 +55,14 @@ powershell ^
 echo [INFO] 正在压缩为 %ZIPNAME%...
 powershell Compress-Archive -Path dist\* -DestinationPath %ZIPNAME%
 
+:: 自动备份 zip 到 releases 文件夹
+echo [INFO] 正在备份 zip 到 releases\ 文件夹...
+if not exist releases (
+    mkdir releases
+)
+copy "%ZIPNAME%" releases\ >nul
+
+
 :: 打开文件夹
 echo [SUCCESS] 打包和压缩完成！
 start .

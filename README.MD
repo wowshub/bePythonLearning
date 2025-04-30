@@ -17,3 +17,5 @@ pyinstaller --onefile --windowed --icon=be.ico --upx-dir /path/to/upx FormatToLe
 构建时间：2025-04-30 20:17
 构建文件：FormatToLearning.exe
 
+打包完成后自动将 ZIP 文件备份到 releases/ 文件夹中保存历史版本
+
