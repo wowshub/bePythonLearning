@@ -24,6 +24,7 @@ FormatToLearningGui = Tk()
 FormatToLearningGui.title("人卫题库导入学习通小程序")
 FormatToLearningGui.geometry("2400x1600+500+500")
 
+
 # 居中弹窗函数
 def custom_showinfo(title, message, width=500, height=200):
     win = Toplevel(FormatToLearningGui)
@@ -39,6 +40,8 @@ def custom_showinfo(title, message, width=500, height=200):
     win.geometry(f"{width}x{height}+{x}+{y}")
     Label(win, text=message, font=default_font, pady=30).pack()
     Button(win, text="确定", font=default_font, width=10, command=win.destroy).pack(pady=20)
+
+
 def select_all(event):
     event.widget.tag_add("sel", "1.0", "end")
     return "break"
@@ -87,6 +90,7 @@ def format_to_learning():
 
     custom_showinfo("转换成功", "🎉 所有大题已成功写入 renweiB1Output.txt")
 
+
 # UI 布局
 Label(FormatToLearningGui, text="输入B1题目", font=default_font, height=3).pack()
 exerciseText = Text(FormatToLearningGui, font=default_font, undo=True, maxundo=-1, autoseparators=True)
@@ -99,6 +103,7 @@ exerciseText.bind("<Control-a>", select_all)
 # 绑定 Command+A（macOS）
 exerciseText.bind("<Command-a>", select_all)
 
+
 def safe_undo(event):
     try:
         event.widget.edit_undo()
@@ -106,10 +111,9 @@ def safe_undo(event):
         pass  # 忽略“nothing to undo”的异常
     return "break"
 
+
 exerciseText.bind("<Control-z>", safe_undo)
 exerciseText.bind("<Command-z>", safe_undo)  # macOS 支持
-
-
 
 
 saveButtom = Button(FormatToLearningGui, text="转换", command=format_to_learning, font=default_font, height=2, width=10)
