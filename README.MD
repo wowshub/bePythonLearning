@@ -17,7 +17,24 @@ pyinstaller --onefile --windowed --icon=be.ico --upx-dir /path/to/upx FormatToLe
 构建时间：2025-04-30 20:17
 构建文件：FormatToLearning.exe
 
+:: 生成 version.txt
+echo [INFO] 生成 version.txt ...
+powershell ^
+"$v='版本号：%VERSION%';" ^
+"$t='构建时间：'+(Get-Date -Format 'yyyy-MM-dd HH:mm');" ^
+"$f='构建文件：%OUTNAME%.exe';" ^
+"$lines=($v,$t,$f);" ^
+"Set-Content -Path dist\\version.txt -Value $lines"
+
+
 打包完成后自动将 ZIP 文件备份到 releases/ 文件夹中保存历史版本
+:: 自动备份 zip 到 releases 文件夹
+echo [INFO] 正在备份 zip 到 releases\ 文件夹...
+if not exist releases (
+mkdir releases
+)
+copy "%ZIPNAME%" releases\ >nul
+
 
 自动给 ZIP 文件加上版本号 + 时间戳
 for /f %%i in ('powershell -Command "Get-Date -Format yyyyMMdd_HHmm"') do set TIMESTAMP=%%i
