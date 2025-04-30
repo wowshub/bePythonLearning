@@ -4,9 +4,11 @@ from tkinter import font
 from tkinter.ttk import Combobox
 import re
 
+
 # 初始化 Tk 根窗口（供字体检测用）
 root = Tk()
 root.withdraw()
+
 
 # 字体选择（中文兼容）
 chinese_font_candidates = [
@@ -22,6 +24,7 @@ FormatToLearningGui = Tk()
 FormatToLearningGui.title("人卫题库导出工具")
 FormatToLearningGui.geometry("2400x1600+500+500")
 
+
 # 居中弹窗
 def custom_showinfo(title, message, width=500, height=200):
     win = Toplevel(FormatToLearningGui)
@@ -32,6 +35,7 @@ def custom_showinfo(title, message, width=500, height=200):
     win.geometry(f"{width}x{height}+{x}+{y}")
     Label(win, text=message, font=default_font, pady=30).pack()
     Button(win, text="确定", font=default_font, width=10, command=win.destroy).pack(pady=20)
+
 
 # A3/A4题型处理函数
 def wrap_a3a4_questions(text: str) -> str:
@@ -61,6 +65,7 @@ def wrap_a3a4_questions(text: str) -> str:
 
     return "\n\n".join(output_blocks)
 
+
 # B1题型处理函数
 def wrap_b1_questions(text: str) -> str:
     lines = text.strip().splitlines()
@@ -81,6 +86,7 @@ def wrap_b1_questions(text: str) -> str:
         output_blocks.append(f"{block_counter}.{{{{\n" + "\n".join(current_block).strip() + "\n}}}}")
 
     return "\n\n".join(output_blocks)
+
 
 # 格式转换主函数
 def format_to_learning():
@@ -107,10 +113,12 @@ def format_to_learning():
     except Exception as e:
         custom_showinfo("写入错误", str(e))
 
+
 # 快捷键 Ctrl+A：全选
 def select_all(event):
     event.widget.tag_add("sel", "1.0", "end")
     return "break"
+
 
 # 快捷键 Ctrl+Z：撤销
 def safe_undo(event):
