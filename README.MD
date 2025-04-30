@@ -1,6 +1,15 @@
 0.安装相关打包成exe 相关环境安装 setup enviroment:
 pip install pyinstaller
-pyinstaller --onefile --windowed --icon=be.ico FormatToLearning1.0.py
+pyinstaller --onefile --windowed --icon=be.ico FormatToLearning.py
+
+git tag v1.0.0
+在GITHUB上新建release
+
+打包成release 
+sudo apt install rar
+rar a FormatToLearning.rar
+
+
 
 macOS 用 .sh 脚本（适用于打包 .app 或 CLI）
 使用方法：
