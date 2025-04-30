@@ -8,9 +8,9 @@ setlocal
 :: 用户输入版本号
 set /p VERSION=请输入版本号（如 v1.1）：
 
-set SCRIPT=mulFormatTolearning.py
+set SCRIPT=FormatToLearning.py
 set ICON=be.ico
-set OUTNAME=mulFormatTolearning
+set OUTNAME=FormatToLearning
 
 :: 获取时间戳
 for /f %%i in ('powershell -Command "Get-Date -Format yyyyMMdd_HHmm"') do set TIMESTAMP=%%i

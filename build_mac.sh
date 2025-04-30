@@ -1,8 +1,8 @@
 #!/bin/bash
 
-SCRIPT="mulFormatTolearning.py"
+SCRIPT="FormatToLearning.py"
 ICON="be.icns"
-OUTNAME="mulFormatTolearning"
+OUTNAME="FormatToLearning"
 
 # 检查 pyinstaller 是否安装
 if ! command -v pyinstaller &> /dev/null; then
