@@ -4,11 +4,18 @@ setlocal
 :: ========================
 :: 配置变量
 :: ========================
-set SCRIPT=FormatToLearning.py
+
+:: 用户输入版本号
+set /p VERSION=请输入版本号（如 v1.1）：
+
+set SCRIPT=mulFormatTolearning.py
 set ICON=be.ico
-set OUTNAME=FormatToLearning
-set VERSION=v1.0
+set OUTNAME=mulFormatTolearning
+
+:: 获取时间戳
 for /f %%i in ('powershell -Command "Get-Date -Format yyyyMMdd_HHmm"') do set TIMESTAMP=%%i
+
+:: 拼接 zip 文件名
 set ZIPNAME=%OUTNAME%_%VERSION%_%TIMESTAMP%.zip
 
 :: 检查 pyinstaller 是否存在
@@ -42,14 +49,15 @@ echo [INFO] 拷贝 README 和图标到 dist...
 copy README.txt dist\ >nul
 copy %ICON% dist\ >nul
 
-:: 生成 version.txt
+:: 生成 version.txt，使用一致时间戳
 echo [INFO] 生成 version.txt ...
 powershell ^
   "$v='版本号：%VERSION%';" ^
-  "$t='构建时间：'+(Get-Date -Format 'yyyy-MM-dd HH:mm');" ^
+  "$t='构建时间：%TIMESTAMP:~0,4%-%TIMESTAMP:~4,2%-%TIMESTAMP:~6,2% %TIMESTAMP:~9,2%:%TIMESTAMP:~11,2%';" ^
   "$f='构建文件：%OUTNAME%.exe';" ^
   "$lines=($v,$t,$f);" ^
   "Set-Content -Path dist\\version.txt -Value $lines"
+
 
 
 :: 创建 zip 压缩包
