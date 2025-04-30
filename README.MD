@@ -19,3 +19,6 @@ pyinstaller --onefile --windowed --icon=be.ico --upx-dir /path/to/upx FormatToLe
 
 打包完成后自动将 ZIP 文件备份到 releases/ 文件夹中保存历史版本
 
+自动给 ZIP 文件加上版本号 + 时间戳
+for /f %%i in ('powershell -Command "Get-Date -Format yyyyMMdd_HHmm"') do set TIMESTAMP=%%i
+set ZIPNAME=%OUTNAME%_%VERSION%_%TIMESTAMP%.zip

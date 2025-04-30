@@ -8,7 +8,8 @@ set SCRIPT=FormatToLearning.py
 set ICON=be.ico
 set OUTNAME=FormatToLearning
 set VERSION=v1.0
-set ZIPNAME=%OUTNAME%_%VERSION%.zip
+for /f %%i in ('powershell -Command "Get-Date -Format yyyyMMdd_HHmm"') do set TIMESTAMP=%%i
+set ZIPNAME=%OUTNAME%_%VERSION%_%TIMESTAMP%.zip
 
 :: 检查 pyinstaller 是否存在
 where pyinstaller >nul 2>&1
