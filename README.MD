@@ -12,3 +12,8 @@ pip install upx
 pyinstaller --onefile --windowed --icon=be.ico --upx-dir /path/to/upx FormatToLearning1.0.py
 
 
+自动生成 version.txt
+版本号：v1.0
+构建时间：2025-04-30 20:17
+构建文件：mulFormatTolearning.exe
+
